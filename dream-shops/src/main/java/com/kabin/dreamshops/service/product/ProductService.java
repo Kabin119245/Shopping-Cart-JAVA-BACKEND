@@ -1,6 +1,7 @@
 package com.kabin.dreamshops.service.product;
 
 import com.kabin.dreamshops.exception.ProductNotFoundException;
+import com.kabin.dreamshops.model.Category;
 import com.kabin.dreamshops.model.Product;
 import com.kabin.dreamshops.repository.ProductRepository;
 import com.kabin.dreamshops.request.AddProductRequest;
@@ -18,8 +19,22 @@ public class ProductService implements  IProductService{
 
     @Override
     public Product addProduct(AddProductRequest request ) {
-      return  "";
+      return  null;
     }
+
+    private Product createProduct(AddProductRequest request, Category category) {
+
+        return new Product(
+           request.getName(),
+                request.getBrand(),
+                request.getDescription(),
+                request.getInventory(),
+                request.getPrice(),
+                category
+        );
+
+    }
+
 
     @Override
     public void updateProduct(Product product, Long productId) {

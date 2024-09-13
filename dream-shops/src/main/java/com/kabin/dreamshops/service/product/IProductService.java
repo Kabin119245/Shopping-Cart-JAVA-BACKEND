@@ -1,12 +1,13 @@
 package com.kabin.dreamshops.service.product;
 
 import com.kabin.dreamshops.model.Product;
+import com.kabin.dreamshops.request.AddProductRequest;
 
 import java.util.List;
 
 public interface IProductService {
 
-    Product addProduct(Product product);
+    Product addProduct(AddProductRequest product);
 
     Product getProductById(Long id);
 

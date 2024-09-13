@@ -12,7 +12,6 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 public class Product {
 
@@ -40,4 +39,12 @@ public class Product {
     private List<Image> images;
 
 
+    public Product(String name, String brand, String description, int inventory, BigDecimal price, Category category) {
+        this.name = name;
+        this.brand = brand;
+        this.description = description;
+        this.inventory = inventory;
+        this.price = price;
+        this.category = category;
+    }
 }
