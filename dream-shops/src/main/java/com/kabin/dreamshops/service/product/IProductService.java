@@ -2,6 +2,7 @@ package com.kabin.dreamshops.service.product;
 
 import com.kabin.dreamshops.model.Product;
 import com.kabin.dreamshops.request.AddProductRequest;
+import com.kabin.dreamshops.request.ProductUpdateRequest;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public interface IProductService {
 
     Product getProductById(Long id);
 
-    void updateProduct(Product product, Long productId);
+    Product updateProduct(ProductUpdateRequest product, Long productId);
 
     void deleteProductById(Long id);
 
