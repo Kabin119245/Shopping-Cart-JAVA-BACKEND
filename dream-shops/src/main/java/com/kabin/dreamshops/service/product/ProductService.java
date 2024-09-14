@@ -3,23 +3,37 @@ package com.kabin.dreamshops.service.product;
 import com.kabin.dreamshops.exception.ProductNotFoundException;
 import com.kabin.dreamshops.model.Category;
 import com.kabin.dreamshops.model.Product;
+import com.kabin.dreamshops.repository.CategoryRepository;
 import com.kabin.dreamshops.repository.ProductRepository;
 import com.kabin.dreamshops.request.AddProductRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class ProductService implements  IProductService{
 
 
     private final ProductRepository prepo;
+    private final CategoryRepository categoryRepository;
 
     @Override
     public Product addProduct(AddProductRequest request ) {
-      return  null;
+        //check if category is found in DB
+        // if yes -> set it as a new product category
+        //  if np-> save it as a new category
+        //then set as a new product category
+
+        Category category = Optional.ofNullable(categoryRepository.findByName(request.getCategory().getName())).orElseGet(() -> {
+            Category newCategory = new Category(request.getCategory().getName());
+            return categoryRepository.save(newCategory);
+        });
+        request.setCategory(category);
+
+      return  prepo.save(createProduct(request, category));
     }
 
     private Product createProduct(AddProductRequest request, Category category) {
