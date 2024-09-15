@@ -1,6 +1,7 @@
 package com.kabin.dreamshops.service.category;
 
 
+import com.kabin.dreamshops.exception.ALreadyExisitsException;
 import com.kabin.dreamshops.exception.ResourceNotFoundException;
 import com.kabin.dreamshops.model.Category;
 import com.kabin.dreamshops.repository.CategoryRepository;
@@ -31,7 +32,8 @@ public class CategoryService implements ICategoryService {
 
     @Override
     public Category addCategory(Category category) {
-        return null;
+        return Optional.of(category).filter(c -> !categoryRepository.existsByName(c.getName()))
+                .map(categoryRepository :: save).orElseThrow(() -> new ALreadyExisitsException("Category Already Exists"));
     }
 
     @Override
