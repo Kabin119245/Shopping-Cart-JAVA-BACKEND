@@ -8,6 +8,7 @@ import com.kabin.dreamshops.repository.ImageRepository;
 import com.kabin.dreamshops.service.product.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.sql.rowset.serial.SerialBlob;
@@ -19,6 +20,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class ImageService implements IImageService{
 
     private final ImageRepository imageRepository;
@@ -59,8 +61,8 @@ public class ImageService implements IImageService{
 
                 //now to return to the front end we use ImageDto
                 ImageDto imageDto = new ImageDto();
-                imageDto.setImageId(savedImage.getId());
-                imageDto.setImageName(savedImage.getFileName());
+                imageDto.setId(savedImage.getId());
+                imageDto.setFileName(savedImage.getFileName());
                 imageDto.setDownloadUrl(savedImage.getDownloadUrl());
 
                 savedImageDtos.add(imageDto);

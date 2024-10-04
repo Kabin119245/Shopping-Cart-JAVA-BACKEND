@@ -1,5 +1,6 @@
 package com.kabin.dreamshops.service.product;
 
+import com.kabin.dreamshops.dto.ProductDto;
 import com.kabin.dreamshops.model.Product;
 import com.kabin.dreamshops.request.AddProductRequest;
 import com.kabin.dreamshops.request.ProductUpdateRequest;
@@ -25,4 +26,7 @@ public interface IProductService {
 
     Long countProductsByBrandAndName(String brand, String name);
 
+    List<ProductDto> getConvertedProducts(List<Product> products);
+
+    ProductDto convertToDto(Product product);
 }

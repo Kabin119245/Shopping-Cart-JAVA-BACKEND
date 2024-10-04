@@ -1,6 +1,7 @@
 package com.kabin.dreamshops.model;
 
 import ch.qos.logback.core.boolex.EvaluationException;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,7 +26,9 @@ public class Category {
     private String name;
 
     //relationships
+
     @OneToMany(mappedBy = "category")
+    @JsonIgnore
     private List<Product> products;
 
 
